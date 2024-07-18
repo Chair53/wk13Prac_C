@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <!--<link rel="stylesheet" href="13c.css">-->
+</head>
+<body>
+    <form>
+        <label for="UID">User id:</label>
+        <input id="UID" type="text" required maxlength="12" minlength="5" />
+        <br />
+        <br />
+        <label for="pw">Password:</label>
+        <input id="pw" type="password" required maxlength="12" minlength="7" />
+        <br />
+        <br />
+        <label for="name">Name:</label>
+        <input id="name" type="text" pattern="[A-Za-z]+" required />
+        <br />
+        <br />
+        <label for="address">Address:</label>
+        <input id="address" type="text" />
+        <br />
+        <br />
+        <label for="country">Country:</label>
+        <input id="country" placeholder="(Please select a country)" list="countries" required />
+        <datalist id="countries">
+            <option>Dipsy</option>
+            <option>Tinky Winky</option>
+            <option>Laa Laa</option>
+            <option>Po</option>
+        </datalist>
+        <br />
+        <br />
+        <label for="zip">ZIP Code:</label>
+        <input id="zip" type="number" required />
+        <br />
+        <br />
+        <label for="mail">Email:</label>
+        <input id="mail" type="email" required />
+        <br />
+        <p style="display:inline-block;">Sex:</p>
+        <input id="girl" type="radio" name="gender" required />
+        <label for="girl">Female</label>
+        <input id="guy" type="radio" name="gender" required />
+        <label for="guy">Male</label>
+        <br />
+        <p style="display:inline-block;">Language:</p>
+        <input id="eng" type="checkbox" checked />
+        <label for="eng">English</label>
+        <input id="noneng" type="checkbox" />
+        <label for="noneng">Non-English</label>
+        <br />
+        <br />
+        <div style="height:20vh;">
+            <label for="about" style="position:relative; top:-60%;">About:</label>
+            <textarea type="text" id="about" rows="6" style="resize:none;"></textarea>
+        </div>
+        <button id="send">Submit</button>
+    </form>
+</body>
+</html>
+
+<script>
+    document.querySelector("#send").addEventListener("click", readVal);
+    function readVal() {
+        var ans = document.querySelector("#question").value;
+        document.querySelector("#message-box").innerHTML = "u entered: " + ans;
+    }
+    const eng = document.querySelector("#eng");
+    const noneng = document.querySelector("#noneng");
+    eng.addEventListener("change", oneCheck);
+    noneng.addEventListener("change", oneCheck);
+    function oneCheck(e) {
+        if (e.target == eng) {
+            noneng.checked = false;
+        }
+        else
+            eng.checked = false;
+
+        if (!eng.checked && !noneng.checked)
+            e.target.checked = true;
+    }
+</script>
